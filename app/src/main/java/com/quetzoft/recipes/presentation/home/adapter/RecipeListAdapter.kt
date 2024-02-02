@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.quetzoft.recipes.R
 import com.quetzoft.recipes.domain.model.Recipe
 
@@ -22,7 +24,13 @@ class RecipeListAdapter(private val itemList: List<Recipe>) :
         val currentItem = itemList[position]
 
         // Set the values to the views
-        //holder.imageViewRecipeItem.setImageResource(currentItem.imageResourceId)
+        Glide.with(holder.itemView.context)
+            .load(currentItem.image)
+            .apply(RequestOptions()
+                .placeholder(R.drawable.outline_broken_image)
+                .error(R.drawable.outline_broken_image)
+            )
+            .into(holder.imageViewRecipeItem)
         holder.textViewRecipeNameItem.text = currentItem.title
     }
 
