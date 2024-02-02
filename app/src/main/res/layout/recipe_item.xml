@@ -18,9 +18,9 @@
         android:id="@+id/textViewRecipeNameItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textSize="20dp"
         android:text="@string/title_item_name"
+        android:textAlignment="center"
         android:layout_margin="5dp"/>
 
     <!-- Container for text details -->
