@@ -8,14 +8,14 @@
     android:gravity="center">
 
     <ImageView
-        android:id="@+id/imageViewItem"
+        android:id="@+id/imageViewRecipeItem"
         android:layout_width="200dp"
         android:layout_height="180dp"
         android:scaleType="centerCrop"
         android:src="@drawable/outline_broken_image" />
 
     <TextView
-        android:id="@+id/textViewName"
+        android:id="@+id/textViewRecipeNameItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
