@@ -1,9 +1,12 @@
 package com.quetzoft.recipes.presentation.recipe_detail
 
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
@@ -11,7 +14,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
 import com.quetzoft.recipes.R
 import com.quetzoft.recipes.common.Constants
 import com.quetzoft.recipes.domain.model.Ingredient
@@ -23,6 +30,7 @@ class RecipeDetailActivity : AppCompatActivity() {
 
     private lateinit var viewModel: RecipeDetailViewModel
     private lateinit var recipeImageView: ImageView
+    private lateinit var collapsingToolbarProgress: ProgressBar
     private lateinit var recipeTitle: TextView
     private lateinit var readyInMinutesTextView: TextView
     private lateinit var healthScoreTextView: TextView
@@ -43,6 +51,7 @@ class RecipeDetailActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[RecipeDetailViewModel::class.java]
         recipeImageView = findViewById(R.id.collapsingToolbarImage)
+        collapsingToolbarProgress = findViewById(R.id.collapsingToolbarProgress)
         recipeTitle = findViewById(R.id.recipeTitle)
         readyInMinutesTextView = findViewById(R.id.readyInMinutesTextView)
         healthScoreTextView = findViewById(R.id.healthScoreTextView)
@@ -66,9 +75,31 @@ class RecipeDetailActivity : AppCompatActivity() {
 
                 Glide.with(this)
                     .load(recipeDetail.image)
+                    .listener(object: RequestListener<Drawable> {
+                        override fun onLoadFailed(
+                            e: GlideException?,
+                            model: Any?,
+                            target: Target<Drawable>?,
+                            isFirstResource: Boolean
+                        ): Boolean {
+                            collapsingToolbarProgress.visibility = View.GONE
+                            return false
+                        }
+
+                        override fun onResourceReady(
+                            resource: Drawable?,
+                            model: Any?,
+                            target: Target<Drawable>?,
+                            dataSource: DataSource?,
+                            isFirstResource: Boolean
+                        ): Boolean {
+                            collapsingToolbarProgress.visibility = View.GONE
+                            return false
+                        }
+
+                    })
                     .apply(
                         RequestOptions()
-                        .placeholder(R.drawable.outline_broken_image)
                         .error(R.drawable.outline_broken_image)
                     )
                     .into(recipeImageView)
