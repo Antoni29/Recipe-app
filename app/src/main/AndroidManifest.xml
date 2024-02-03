@@ -24,6 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".presentation.recipe_detail.RecipeDetailActivity"
+            android:exported="false"
+            android:label=""
+            android:parentActivityName=".presentation.home.MainActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.home.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

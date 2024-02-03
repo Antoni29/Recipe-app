@@ -6,9 +6,12 @@ data class RecipeDetailDto(
     val id: Int,
     val title: String,
     val image: String,
+    val imageType: String,
+    val healthScore: Int,
     val readyInMinutes: Int,
     val summary: String,
-    val instructions: String
+    val instructions: String,
+    val extendedIngredients: List<IngredientDto>
 )
 
 fun RecipeDetailDto.toRecipeDetail(): RecipeDetail {
@@ -16,8 +19,11 @@ fun RecipeDetailDto.toRecipeDetail(): RecipeDetail {
         id = id,
         title = title,
         image = image,
+        imageType = imageType,
+        healthScore = healthScore,
         readyInMinutes = readyInMinutes,
         summary = summary,
-        instructions = instructions
+        instructions = instructions,
+        extendedIngredients = extendedIngredients.map { it.toIngredient() }
     )
 }

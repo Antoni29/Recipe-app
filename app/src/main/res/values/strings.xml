@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Recipes</string>
     <string name="title_item_name">Item name large for test the text view</string>
+    <string name="title_description">Description</string>
+    <string name="title_ingredients">Ingredients</string>
+
+    <string name="image_item_description">imageRecipeItem</string>
+    <string name="image_icon_description">imageRecipeIcon</string>
+    <string name="image_detail_description">imageRecipeDetail</string>
 </resources>

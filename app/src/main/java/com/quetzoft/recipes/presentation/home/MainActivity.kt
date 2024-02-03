@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         recipesRecyclerView = findViewById(R.id.recipesRecyclerView)
         recipesRecyclerView.layoutManager = GridLayoutManager(this, 2)
         recipeListData = arrayListOf()
-        recipeListAdapter = RecipeListAdapter(recipeListData)
+        recipeListAdapter = RecipeListAdapter(this, recipeListData)
         recipesRecyclerView.adapter = recipeListAdapter
 
         observers()
