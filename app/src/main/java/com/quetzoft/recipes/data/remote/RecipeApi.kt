@@ -11,7 +11,9 @@ interface RecipeApi {
 
     @GET("/recipes/complexSearch")
     suspend fun getRecipes(
-        @Query("apiKey") apiKey: String = Constants.API_KEY
+        @Query("apiKey") apiKey: String = Constants.API_KEY,
+        @Query("offset") offset: Int = 0,
+        @Query("number") number: Int = 25,
     ): RecipesResponseDto
 
     @GET("/recipes/{id}/information")

@@ -31,6 +31,20 @@ class MainActivity : AppCompatActivity() {
         recipeListData = arrayListOf()
         recipeListAdapter = RecipeListAdapter(this, recipeListData)
         recipesRecyclerView.adapter = recipeListAdapter
+        recipesRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val layoutManager = recyclerView.layoutManager as GridLayoutManager
+                val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
+                val totalItemCount = layoutManager.itemCount
+
+                // Check if the last visible item is close to the total item count
+                if (lastVisibleItemPosition >= totalItemCount - 1) {
+                    viewModel.getRecipesOffset(totalItemCount)
+                }
+            }
+        })
 
         observers()
     }

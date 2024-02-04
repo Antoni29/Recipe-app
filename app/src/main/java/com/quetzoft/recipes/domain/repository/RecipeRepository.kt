@@ -7,5 +7,7 @@ interface RecipeRepository {
 
     suspend fun getRecipes(): RecipesResponseDto
 
+    suspend fun getRecipes(offset: Int): RecipesResponseDto
+
     suspend fun getRecipeDetail(recipeId: Int): RecipeDetailDto
 }

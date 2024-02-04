@@ -11,6 +11,10 @@ class RecipeRepositoryImpl @Inject constructor(private val api: RecipeApi): Reci
         return api.getRecipes()
     }
 
+    override suspend fun getRecipes(offset: Int): RecipesResponseDto {
+        return api.getRecipes(offset = offset)
+    }
+
     override suspend fun getRecipeDetail(recipeId: Int): RecipeDetailDto {
         return api.getRecipeDetail(recipeId)
     }
