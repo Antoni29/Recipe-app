@@ -11,8 +11,7 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:fitsSystemWindows="true"
-        android:theme="@style/Base.Theme.Recipes">
+        android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbar"
@@ -131,7 +130,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:text="@string/title_description"/>
+                    android:text="@string/description_title"/>
                 <TextView
                     android:id="@+id/recipeDescriptionTextView"
                     android:layout_width="match_parent"
@@ -153,7 +152,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:text="@string/title_ingredients"/>
+                    android:text="@string/ingredients_title"/>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recipeIngredientsRecyclerView"
                     android:layout_width="match_parent"

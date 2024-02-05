@@ -15,6 +15,14 @@ class RecipeRepositoryImpl @Inject constructor(private val api: RecipeApi): Reci
         return api.getRecipes(offset = offset)
     }
 
+    override suspend fun getRecipesByQuery(query: String, offset: Int): RecipesResponseDto {
+        return api.getRecipesByQuery(query, offset = offset)
+    }
+
+    override suspend fun getRecipesByCuisine(cuisine: String, offset: Int): RecipesResponseDto {
+        return api.getRecipesByCuisine(cuisine, offset = offset)
+    }
+
     override suspend fun getRecipeDetail(recipeId: Int): RecipeDetailDto {
         return api.getRecipeDetail(recipeId)
     }
