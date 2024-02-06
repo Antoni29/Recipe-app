@@ -11,7 +11,7 @@ interface RecipeRepository {
 
     suspend fun getRecipesByQuery(query: String, offset: Int): RecipesResponseDto
 
-    suspend fun getRecipesByCuisine(query: String, offset: Int): RecipesResponseDto
+    suspend fun getRecipesByCuisine(cuisine: String, offset: Int): RecipesResponseDto
 
     suspend fun getRecipeDetail(recipeId: Int): RecipeDetailDto
 }
