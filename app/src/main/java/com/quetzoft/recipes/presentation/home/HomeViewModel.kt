@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val getRecipesUseCase: GetRecipesUseCase,
     private val getRecipesOffsetUseCase: GetRecipesOffsetUseCase,
     private val getRecipesByQueryUseCase: GetRecipesByQueryUseCase,

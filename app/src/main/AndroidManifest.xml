@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Recipes"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.home.MainActivity"
+            android:name=".presentation.home.HomeActivity"
             android:exported="true"
             android:launchMode="singleTop">
             <intent-filter>
@@ -34,9 +34,9 @@
             android:name=".presentation.recipe_detail.RecipeDetailActivity"
             android:exported="false"
             android:label=""
-            android:parentActivityName=".presentation.home.MainActivity">
+            android:parentActivityName=".presentation.home.HomeActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".presentation.home.MainActivity"/>
+                android:value=".presentation.home.HomeActivity"/>
         </activity>
     </application>
 

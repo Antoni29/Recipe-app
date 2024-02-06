@@ -6,13 +6,11 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
-import androidx.compose.ui.text.toLowerCase
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,12 +21,11 @@ import com.quetzoft.recipes.domain.model.Recipe
 import com.quetzoft.recipes.presentation.home.adapter.CuisinesListAdapter
 import com.quetzoft.recipes.presentation.home.adapter.RecipeListAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Locale
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: HomeViewModel
     private lateinit var cuisinesRecyclerView: RecyclerView
     private lateinit var recipesRecyclerView: RecyclerView
     private lateinit var swipeRefresh: SwipeRefreshLayout
@@ -46,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.mainToolbar);
         setSupportActionBar(toolbar)
 
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
         //Cuisines recycler view
         cuisinesRecyclerView = findViewById(R.id.cuisinesRecyclerView)
@@ -136,7 +133,7 @@ class MainActivity : AppCompatActivity() {
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = menu.findItem(R.id.search).actionView as SearchView
         menu.findItem(R.id.search).icon?.setTint(resources.getColor(R.color.white))
-        val component = ComponentName(this, MainActivity::class.java)
+        val component = ComponentName(this, HomeActivity::class.java)
         val searchableInfo = searchManager.getSearchableInfo(component)
         searchView.setSearchableInfo(searchableInfo)
 
