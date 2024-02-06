@@ -1,5 +1,6 @@
 package com.quetzoft.recipes.domain.use_case.get_recipes
 
+import com.quetzoft.recipes.common.Constants
 import com.quetzoft.recipes.common.Resource
 import com.quetzoft.recipes.data.remote.dto.toRecipe
 import com.quetzoft.recipes.data.remote.dto.toRecipeDetail
@@ -22,9 +23,9 @@ class GetRecipesUseCase @Inject constructor(
             val recipes = repository.getRecipes().toRecipesResponse().results
             emit(Resource.Success(recipes))
         } catch(e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occured"))
+            emit(Resource.Error(e.localizedMessage ?: Constants.UNEXPECTED_ERROR_MESSAGE))
         } catch(e: IOException) {
-            emit(Resource.Error("Couldn't reach server. Check your internet connection."))
+            emit(Resource.Error(Constants.IOEXCEPTION_MESSAGE))
         }
     }
 }
