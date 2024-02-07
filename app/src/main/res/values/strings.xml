@@ -5,8 +5,11 @@
     <string name="ingredients_title">Ingredients</string>
     <string name="search_title">Search</string>
     <string name="cuisines_title">Cuisines</string>
+    <string name="map_recipe_title">Map Recipe</string>
 
     <string name="search_hint">Search recipe</string>
+
+    <string name="go_to_map_action">Open map location</string>
 
     <string name="image_item_description">imageRecipeItem</string>
     <string name="image_icon_description">imageRecipeIcon</string>

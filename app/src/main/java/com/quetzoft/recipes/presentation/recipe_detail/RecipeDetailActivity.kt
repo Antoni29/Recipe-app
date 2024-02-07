@@ -1,10 +1,12 @@
 package com.quetzoft.recipes.presentation.recipe_detail
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -23,6 +25,7 @@ import com.quetzoft.recipes.R
 import com.quetzoft.recipes.common.Constants
 import com.quetzoft.recipes.domain.model.Ingredient
 import com.quetzoft.recipes.presentation.recipe_detail.adapter.IngredientListAdapter
+import com.quetzoft.recipes.presentation.recipe_map.RecipeMapActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,6 +41,7 @@ class RecipeDetailActivity : AppCompatActivity() {
     private lateinit var recipeIngredientsRecyclerView: RecyclerView
     private lateinit var ingredientList: ArrayList<Ingredient>
     private lateinit var adapter: IngredientListAdapter
+    private lateinit var goToLocationButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +50,7 @@ class RecipeDetailActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
-
+            setDisplayShowHomeEnabled(true)
         }
 
         viewModel = ViewModelProvider(this)[RecipeDetailViewModel::class.java]
@@ -63,15 +67,34 @@ class RecipeDetailActivity : AppCompatActivity() {
         recipeIngredientsRecyclerView.layoutManager = LinearLayoutManager(this)
         recipeIngredientsRecyclerView.adapter = adapter
 
+        goToLocationButton = findViewById(R.id.goToLocationButton)
+        goToLocationButton.setOnClickListener {
+            startActivity(
+                Intent(this, RecipeMapActivity::class.java)
+                    //Static Location because de API not returns location
+                    //for recipe detail
+                    .putExtra("latitude", 20.639516188095417)
+                    .putExtra("longitude", -100.40080813882113)
+                    .putExtra("recipeTitle", recipeTitle.text)
+            )
+        }
+
         val recipeId = intent.extras?.getInt(Constants.PARAM_RECIPE_ID)
         viewModel.getRecipeDetail(recipeId ?: 0)
 
         observers()
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     private fun observers() {
         viewModel.recipe.observe(this) { recipe ->
             recipe?.let {  recipeDetail ->
+
+                goToLocationButton.visibility = View.VISIBLE
 
                 Glide.with(this)
                     .load(recipeDetail.image)
