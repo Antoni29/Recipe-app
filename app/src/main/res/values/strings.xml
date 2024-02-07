@@ -6,6 +6,7 @@
     <string name="search_title">Search</string>
     <string name="cuisines_title">Cuisines</string>
     <string name="map_recipe_title">Map Recipe</string>
+    <string name="not_found_records_title">Not found records</string>
 
     <string name="search_hint">Search recipe</string>
 

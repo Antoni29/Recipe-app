@@ -2,7 +2,22 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="HomeActivityTest">
+        <State />
+      </entry>
+      <entry key="RecipeDetailActivityTest">
+        <State />
+      </entry>
       <entry key="app">
+        <State />
+      </entry>
+      <entry key="when click an recipe item from RecyclerView()">
+        <State />
+      </entry>
+      <entry key="when clicks RecyclerView item()">
+        <State />
+      </entry>
+      <entry key="whenClicksCuisinesRecyclerViewItem()">
         <State />
       </entry>
     </value>

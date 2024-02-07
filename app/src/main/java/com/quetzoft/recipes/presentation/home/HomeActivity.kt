@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
@@ -26,6 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var viewModel: HomeViewModel
+    private lateinit var notFoundRecordContainer: LinearLayout
     private lateinit var cuisinesRecyclerView: RecyclerView
     private lateinit var recipesRecyclerView: RecyclerView
     private lateinit var swipeRefresh: SwipeRefreshLayout
@@ -45,6 +47,7 @@ class HomeActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
+        notFoundRecordContainer = findViewById(R.id.notFoundRecordContainer)
         //Cuisines recycler view
         cuisinesRecyclerView = findViewById(R.id.cuisinesRecyclerView)
         cuisinesRecyclerView.layoutManager = LinearLayoutManager(
@@ -106,14 +109,18 @@ class HomeActivity : AppCompatActivity() {
         viewModel.recipes.observe(this) { recipes ->
             if(recipes.isNotEmpty()) {
 
-                if(recipesRecyclerView.visibility == View.GONE)
-                    recipesRecyclerView.visibility = View.VISIBLE
+                if(swipeRefresh.visibility == View.GONE)
+                    swipeRefresh.visibility = View.VISIBLE
+
+                if(notFoundRecordContainer.visibility == View.VISIBLE)
+                    notFoundRecordContainer.visibility = View.GONE
 
                 recipeListData.addAll(recipes)
                 recipeListAdapter.notifyDataSetChanged()
             }
             else {
-
+                swipeRefresh.visibility = View.GONE
+                notFoundRecordContainer.visibility = View.VISIBLE
             }
         }
 

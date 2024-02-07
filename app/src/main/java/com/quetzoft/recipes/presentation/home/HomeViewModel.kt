@@ -27,7 +27,7 @@ class HomeViewModel @Inject constructor(
     private val _error = MutableLiveData<String>("")
     val error = _error
 
-    private val _recipes = MutableLiveData<List<Recipe>>(emptyList())
+    private val _recipes = MutableLiveData<List<Recipe>>()
     val recipes = _recipes
 
     init {
